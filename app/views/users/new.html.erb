@@ -1,0 +1,18 @@
+<h1>Sign Up</h1>
+
+<%= form_for @user do |f| %>
+<p><%= f.label :first_name %></p>
+<p><%= f.text_field :first_name%></p>
+<p><%= f.label :username %></p>
+<p><%= f.text_field :username%></p>
+<p><%= f.label :email %></p>
+<p><%= f.text_field :email%></p>
+<p><%= f.label :password %></p>
+<p><%= f.password_field :password %></p>
+<p><%= f.label :password_confirmation %></p>
+<p><%= f.password_field :password_confirmation, required: true %></p>
+<%= f.submit %>
+<% end %>
+
+<%= link_to "Log In", '/login' %> |
+<%= link_to "Log In via Google", '/auth/google_oauth2' %>
