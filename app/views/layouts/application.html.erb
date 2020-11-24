@@ -18,8 +18,8 @@
        <%= link_to "Log In", '/login' %> |
        <%= link_to "Log In via Google", '/auth/google_oauth2' %>
     <% else %>
-      <%# <%= link_to 'My Lists', user_lists_path(@user) %>
-      <a href="/users/<%=current_user.id %>/lists">My Lists</a> 
+      <%# <%= link_to 'My Lists', user_list(@user) %>
+      <a href="/users/<%=current_user.id %>/lists">My Lists</a>
       | <%= link_to "Log Out", '/logout', method: :delete %>
     <% end %>
    </div>
