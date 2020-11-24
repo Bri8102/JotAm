@@ -1,9 +1,9 @@
 <h1><%= @user.first_name %></h1>
-<% @user.lists do |list| %>
-<p><%= link_to 'View Existing List', user_lists_path(@user, list) %></p>
+<% @user.lists.each do |list| %>
+<p><%= link_to list.title, user_list_path(@user, list) %></p>
 <% end %>
 
 
 
-<%= link_to "Log Out", '/logout', method: :delete %>
-<%= link_to "New List", new_user_list_path(@user) %>
+<%# <%= link_to "Log Out", '/logout', method: :delete %> 
+<%= link_to "Create List", new_user_list_path(@user) %> | 
