@@ -16,7 +16,15 @@ class ListsController < ApplicationController
     end
 
     def show
-        @list = List.find(params[:id])
+      if params[:user_id]
+        @user = User.find_by_id(params[:user_id])
+        @list = current_user.lists.find_by_id(id: params[:id])
+        if @list.nil?
+          redirect_to user_lists_path(@user), alert: "List not found"
+        end
+      else
+       @list = List.find(params[:id])
+      end
     end
 
     def new
@@ -24,9 +32,13 @@ class ListsController < ApplicationController
     end
 
     def create
-      @list = current_user.lists.build(list_params)
-      @list.save
-      redirect_to @list, notice: "List was successfully created"
+      @list = List.new(list_params)
+      @list.user_id = current_user.id
+      if @list.save
+        redirect_to user_lists_path(@user), notice: "List was successfully created"
+      else
+        render new_list_path
+      end
     end
 
     def edit
