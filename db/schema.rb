@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_044930) do
+ActiveRecord::Schema.define(version: 2020_11_07_000346) do
 
   create_table "lists", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -28,5 +30,16 @@ ActiveRecord::Schema.define(version: 2020_11_04_044930) do
     t.index ["list_id"], name: "index_tasks_on_list_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "uid"
+  end
+
+  add_foreign_key "lists", "users"
   add_foreign_key "tasks", "lists"
 end
