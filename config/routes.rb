@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     end
 
    resources :users do
-     resources :lists do
-      resources :tasks
-     end
+     resources :lists 
    end
 
  
@@ -26,9 +24,5 @@ Rails.application.routes.draw do
 
   delete "/logout", to: "sessions#destroy"
 
-  # get '/', to: 'users#home'
-
   get '/auth/:provider/callback', to: 'sessions#omniauth'
-  # get '/auth/failure', to: redirect('/')
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
